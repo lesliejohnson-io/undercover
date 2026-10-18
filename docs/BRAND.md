@@ -4,19 +4,19 @@
 
 From Google Fonts:
 
-- **Headings and body**: Instrument Sans
+- **Headings and body**: Archivo
 - **Accent (a tagline or a quote)**: Instrument Serif
 - **Code, numbers and identifiers**: JetBrains Mono
 
 ## Colors
 
-- **Primary**: Sea Green `#06D6A0`, Midnight text
-- **Secondary**: Marigold `#FFC145`, Midnight text
+- **Primary**: Light Blue `#34C3EC`, Midnight text
+- **Secondary**: Teal `#006E16`, Midnight text
 - **Tertiary**: Coral `#F78C6B`, Midnight text
 - **Information**: Cerulean `#118AB2`, white text
 - **Highlight or alert**: Raspberry `#EF476F`, white text
 - **Ink on light backgrounds**: Midnight `#073B4C`
-- **Ink on dark backgrounds**: Sea Mist `#CDD8DB`
+- **Ink on dark backgrounds**: White `#FFFFFF`
 
 Use Sea Green, Marigold and Coral when three things sit side by side, such as a claim's states or chart series. Add Cerulean fourth and Raspberry fifth.
 
