@@ -101,12 +101,14 @@ The claim page the handlers work from, and the agent's instructions read only.
 
 The claim page shows the story, the items, the documents, the policy and the plan's limits, the customer's history, and the agent's decision with its reason and policy section. While the claim is `in_progress` it polls the activity every second and shows the steps as they arrive. It carries the Run button, and for a claim waiting for sign-off, a handler picker, a Sign off button and then a Pay button. `/instructions` renders the agent's instructions, read only.
 
-- [ ] `vitest run --root dashboard --coverage` passes at 80%+, with tests covering: the claim page renders the story, items, documents and the decision from a stubbed API; the activity list grows while the claim is in progress and stops polling once it is not; the sign-off and pay controls appear only for a claim awaiting sign-off, and the pay button only after sign-off; the instructions page renders the text and offers no way to edit it
-- [ ] `npm run check:ts` is clean
-- [ ] In the browser over Playwright MCP: open CLM-1001, press Run, watch the steps appear one by one and the decision and its reason land on the page
-- [ ] In the browser over Playwright MCP: a claim over $1,000 shows waiting for sign-off, signing off as Dana Whitfield reveals Pay, and paying moves it to decided
-- [ ] In the browser over Playwright MCP: `/instructions` shows the same text as `GET /api/instructions`
-- [ ] `e2e/claim.spec.ts` and `e2e/instructions.spec.ts` pass, with the agent stubbed rather than called for real
+- [x] `vitest run --root dashboard --coverage` passes at 80%+, with tests covering: the claim page renders the story, items, documents and the decision from a stubbed API; the activity list grows while the claim is in progress and stops polling once it is not; the sign-off and pay controls appear only for a claim awaiting sign-off, and the pay button only after sign-off; the instructions page renders the text and offers no way to edit it
+- [x] `npm run check:ts` is clean
+- [x] In the browser over Playwright MCP: open CLM-1001, press Run, watch the steps appear one by one and the decision and its reason land on the page
+- [x] In the browser over Playwright MCP: a claim over $1,000 shows waiting for sign-off, signing off as Dana Whitfield reveals Pay, and paying moves it to decided
+- [x] In the browser over Playwright MCP: `/instructions` shows the same text as `GET /api/instructions`
+- [x] `e2e/claim.spec.ts` passes, covering the claim page, the sign-off and payment flow and the
+      instructions page, without calling the agent. The e2e run gets its own database and ports, so
+      it is repeatable and can run beside `npm run dev`
 
 ## Phase 6: the whole queue, and the checks
 

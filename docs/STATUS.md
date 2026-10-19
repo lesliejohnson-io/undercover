@@ -29,7 +29,14 @@ The claims pilot, in progress. See `docs/PLAN.md` for the phases.
   - `api.ts` the typed client, `route.ts` hash routing (`#/`, `#/claims/{id}`, `#/instructions`),
     `useLoad.ts` the loading hook, `Queue.tsx` the queue with counts by state
   - state chips: Cerulean waiting, Light Blue in progress, Coral waiting for sign-off, Teal decided
-- `e2e/`: `queue.spec.ts` covers the queue and opening a claim
+  - `Claim.tsx` the claim page: the story, items, documents, policy, customer history and the
+    agent's decision, with Run, the handler sign-off and the payment. It polls the activity every
+    second while the agent works, and keeps polling until an approval inside the limit is paid,
+    because a claim leaves `in_progress` at the decision while the agent still has the payment to make
+  - `Instructions.tsx` shows `GET /api/instructions` read only
+- `e2e/`: `queue.spec.ts` and `claim.spec.ts`. The e2e run uses its own database (`backend/e2e.db`,
+  dropped at the start of each run) and its own ports (backend 8001, dashboard 5174), so it is
+  repeatable and runs beside `npm run dev`
 
 ## Running it
 

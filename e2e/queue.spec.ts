@@ -22,5 +22,5 @@ test("a row opens the claim", async ({ page }) => {
 
   await expect(page).toHaveURL(/#\/claims\/CLM-1001$/);
   await expect(page.getByRole("heading", { name: "CLM-1001" })).toBeVisible();
-  await expect(page.getByText("Rome, Italy")).toBeVisible();
+  await expect(page.getByText("Rome, Italy").first()).toBeVisible();
 });
