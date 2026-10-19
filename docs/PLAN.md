@@ -114,9 +114,11 @@ The claim page shows the story, the items, the documents, the policy and the pla
 
 Work the queue end to end and hand it over.
 
-- [ ] A run over all 25 claims leaves every claim in `decided` or `awaiting_signoff`, none in `waiting` or `in_progress`, and every decided claim carries a decision, a reason and a policy section
-- [ ] Every claim approved over $1,000 is `awaiting_signoff` with no payment recorded; every payment recorded is at or under $1,000 or signed off. I confirm this straight from the database, not from the API
-- [ ] The queue page shows the finished queue with its counts by state, in both light and dark mode
-- [ ] `docs/STATUS.md` describes what is built and how to run it
-- [ ] `README.md` is a short description of the product and how to start it
-- [ ] `npm run check` passes: ruff, pyright, pytest at 80%+, ESLint, Prettier, tsc, vitest at 80%+ and the Playwright tests. I report the output
+- [x] A run over all 25 claims leaves every claim in `decided` or `awaiting_signoff`, none in `waiting` or `in_progress`, and every decided claim carries a decision, a reason and a policy section
+- [x] Every claim approved over $1,000 is `awaiting_signoff` with no payment recorded; every payment recorded is at or under $1,000 or signed off. I confirm this straight from the database, not from the API
+- [x] The queue page shows the finished queue with its counts by state, in both light and dark mode
+- [x] `docs/STATUS.md` describes what is built and how to run it
+- [ ] ~~`README.md` is a short description of the product and how to start it~~. Dropped: the
+      repo's `README.md` is the course's own, listing each day's labs, briefs and branches, and it is
+      not the product's to overwrite. `docs/STATUS.md` describes the product and how to run it
+- [x] `npm run check` passes: ruff, pyright, pytest at 80%+, ESLint, Prettier, tsc, vitest at 80%+ and the Playwright tests. I report the output
