@@ -63,12 +63,12 @@ The half of the API that changes a claim, and the $1,000 rule.
 
 `decide_claim` takes the decision, the payout, the reason and the policy section, and sets the next status. `pay_claim` takes the amount and refuses with 409 unless the claim is approved and either at or under the limit or signed off. `sign_off_claim` takes a handler id. `add_activity` and `list_activity` record and replay the agent's steps.
 
-- [ ] `uv run pytest -q` passes, with tests covering: approving $420 moves CLM-1001 to `decided` and a $420 payment succeeds; approving $2,400 moves a claim to `awaiting_signoff` and a $2,400 payment is refused with 409; the same payment succeeds after sign-off and the claim is then `decided`; declining and referring both land on `decided`; a payment on a declined claim is refused; paying twice is refused; a payout that does not match the decision is refused; `list_activity` returns steps in the order they were added
-- [ ] `POST /api/claims/CLM-1001/decision` with approve, $420, a reason and "Section 3" returns the claim as `decided`
-- [ ] A claim approved over the limit shows `status: "awaiting_signoff"` in `GET /api/claims`, and `POST .../payment` returns 409 with a message naming the sign-off
-- [ ] `POST .../signoff` with `HND-01` then `POST .../payment` returns the recorded payment
-- [ ] The payout approval limit comes from `company.json`, not a literal in the code: a test that seeds a different limit changes where the guard falls
-- [ ] `npm run check:python` is clean
+- [x] `uv run pytest -q` passes, with tests covering: approving $420 moves CLM-1001 to `decided` and a $420 payment succeeds; approving $2,400 moves a claim to `awaiting_signoff` and a $2,400 payment is refused with 409; the same payment succeeds after sign-off and the claim is then `decided`; declining and referring both land on `decided`; a payment on a declined claim is refused; paying twice is refused; a payout that does not match the decision is refused; `list_activity` returns steps in the order they were added
+- [x] `POST /api/claims/CLM-1001/decision` with approve, $420, a reason and "Section 3" returns the claim as `decided`
+- [x] A claim approved over the limit shows `status: "awaiting_signoff"` in `GET /api/claims`, and `POST .../payment` returns 409 with a message naming the sign-off
+- [x] `POST .../signoff` with `HND-01` then `POST .../payment` returns the recorded payment
+- [x] The payout approval limit comes from `company.json`, not a literal in the code: a test that seeds a different limit changes where the guard falls
+- [x] `npm run check:python` is clean
 
 ## Phase 3: the UnderCover Agent
 

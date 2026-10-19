@@ -173,3 +173,31 @@ class Step(BaseModel):
     step: str
     detail: str
     at: str
+
+
+class DecisionRequest(BaseModel):
+    """The decision the agent reached on a claim."""
+
+    decision: DecisionName
+    payout: float
+    reason: str
+    policy_section: str
+
+
+class SignOffRequest(BaseModel):
+    """The handler signing off a claim over the payout approval limit."""
+
+    handler_id: str
+
+
+class PaymentRequest(BaseModel):
+    """The amount to pay on an approved claim."""
+
+    amount: float
+
+
+class StepRequest(BaseModel):
+    """One step to record against a claim."""
+
+    step: str
+    detail: str

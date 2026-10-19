@@ -6,8 +6,12 @@ The claims pilot, in progress. See `docs/PLAN.md` for the phases.
 
 - `backend/`: SQLite seeded from `data/` at startup, and the read side of the API.
   - `db.py` the schema and the seed, `store.py` the reads and writes, `models.py` the API shapes
-  - `GET /api/health`, `/api/claims`, `/api/claims/{claim_id}`, `/api/claims/{claim_id}/policy`,
+  - reads: `GET /api/health`, `/api/claims`, `/api/claims/{claim_id}`, `/api/claims/{claim_id}/policy`,
     `/api/claims/{claim_id}/customer`, `/api/claims/{claim_id}/activity`, `/api/policy-wording`, `/api/handlers`
+  - writes: `POST /api/claims/{claim_id}/decision`, `/signoff`, `/payment`, `/activity`
+- A claim runs `waiting` to `in_progress` to `awaiting_signoff` or `decided`. A payout over the
+  `payout_approval_limit` in `data/company.json` goes to `awaiting_signoff`, and the payment is
+  refused with a 409 until a handler signs off. The limit is read from the database, not the code.
 - `agent/`: still the skeleton, `run(claim_id, thread_id)` with a health-check tool
 - `dashboard/`: still the skeleton, one page showing whether the backend is up
 - `e2e/`: one test of that page
