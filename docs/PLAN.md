@@ -89,11 +89,11 @@ The queue page, on the brand.
 
 `dashboard/src/` gains the brand in one stylesheet (Archivo, Instrument Serif and JetBrains Mono from Google Fonts, the palette as CSS variables, light and dark surfaces, rounded panels with no outline), a small `api.ts`, and the queue page: one row per claim with the customer, the type, the amount claimed, the date and a state chip, plus counts by state. Money renders as `$1,250.00` and ids in JetBrains Mono.
 
-- [ ] `vitest run --root dashboard --coverage` passes at 80%+, with tests covering: the queue renders a row per claim from a stubbed API; the state chip shows all four states; amounts render as `$420.00`; a failed fetch shows a plain message rather than a blank page
-- [ ] `npm run check:ts` is clean, with no `any` in the new code
-- [ ] In the browser over Playwright MCP: `http://localhost:5173` lists the 25 claims with their states, and the fonts and palette match `docs/BRAND.md`
-- [ ] The page is readable in both light and dark mode; I check both and keep a screenshot of each
-- [ ] `e2e/queue.spec.ts` passes: the queue shows CLM-1001 with Maya Patel, and clicking the row opens the claim
+- [x] `vitest run --root dashboard --coverage` passes at 80%+, with tests covering: the queue renders a row per claim from a stubbed API; the state chip shows all four states; amounts render as `$420.00`; a failed fetch shows a plain message rather than a blank page
+- [x] `npm run check:ts` is clean, with no `any` in the new code
+- [x] In the browser over Playwright MCP: `http://localhost:5173` lists the 25 claims with their states, and the fonts and palette match `docs/BRAND.md`
+- [x] The page is readable in both light and dark mode; I check both and keep a screenshot of each
+- [x] `e2e/queue.spec.ts` passes: the queue shows CLM-1001 with Maya Patel, and clicking the row opens the claim
 
 ## Phase 5: the dashboard, the claim and the instructions
 

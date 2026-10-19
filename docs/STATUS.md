@@ -24,8 +24,12 @@ The claims pilot, in progress. See `docs/PLAN.md` for the phases.
   - each read records a step through the API, and the backend records what changed, so the
     activity on a claim is the trail of a run
   - `openai/gpt-6-luna` at low reasoning effort, or `MODEL_NAME` when it is set
-- `dashboard/`: still the skeleton, one page showing whether the backend is up
-- `e2e/`: one test of that page
+- `dashboard/`: the queue, on the brand in `src/brand.css` (Archivo, Instrument Serif and
+  JetBrains Mono from Google Fonts, the palette as variables, light and dark surfaces).
+  - `api.ts` the typed client, `route.ts` hash routing (`#/`, `#/claims/{id}`, `#/instructions`),
+    `useLoad.ts` the loading hook, `Queue.tsx` the queue with counts by state
+  - state chips: Cerulean waiting, Light Blue in progress, Coral waiting for sign-off, Teal decided
+- `e2e/`: `queue.spec.ts` covers the queue and opening a claim
 
 ## Running it
 
