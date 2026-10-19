@@ -76,12 +76,12 @@ The agent decides a claim end to end, and the backend can start it.
 
 `agent/main.py` keeps the `run(claim_id, thread_id)` entry point and gains claim-scoped tools: `read_claim`, `read_policy`, `read_customer`, `read_policy_wording`, `record_decision` and `pay_claim`. Each records its step through `add_activity`. The system prompt comes from `GET /api/instructions`, which serves the instructions from `agent/instructions.md` so the handlers' read-only page and the agent read one file. The prompt tells it how to work a claim: check the dates and the filing window, find the benefit and its section, work the payout out by the wording's section 10 steps, and refer rather than guess when a document is missing. `run_agent` starts a run in the background, sets the claim to `in_progress` and clears its earlier activity.
 
-- [ ] `uv run pytest -q` passes with a stub model and no network: a scripted approve records the decision and the payment and leaves the claim `decided`; a scripted approve over the limit leaves it `awaiting_signoff` with the agent's `pay_claim` refused and that refusal recorded as a step; a scripted refer leaves it `decided`; the tools are bound to the one claim id; the instructions reach the agent as its system prompt
-- [ ] `curl http://localhost:8000/api/instructions` returns the text of `agent/instructions.md`
-- [ ] One real run on the queue's simplest claim: `uv run python -c "from agent.main import run; print(run('CLM-1001', 'plan-check'))"` approves it, pays a payout at or under $800 against section 3, and `GET /api/claims/CLM-1001/activity` lists the steps it took in order
-- [ ] One real run on a claim whose payout clears $1,000 ends `awaiting_signoff` with no payment recorded
-- [ ] `POST /api/claims/CLM-1002/run` returns immediately with the claim `in_progress`, and polling `GET /api/claims/CLM-1002/activity` shows steps arriving
-- [ ] `npm run check:python` is clean
+- [x] `uv run pytest -q` passes with a stub model and no network: a scripted approve records the decision and the payment and leaves the claim `decided`; a scripted approve over the limit leaves it `awaiting_signoff` with the agent's `pay_claim` refused and that refusal recorded as a step; a scripted refer leaves it `decided`; the tools are bound to the one claim id; the instructions reach the agent as its system prompt
+- [x] `curl http://localhost:8000/api/instructions` returns the text of `agent/instructions.md`
+- [x] One real run on the queue's simplest claim: `uv run python -c "from agent.main import run; print(run('CLM-1001', 'plan-check'))"` approves it, pays a payout at or under $800 against section 3, and `GET /api/claims/CLM-1001/activity` lists the steps it took in order
+- [x] One real run on a claim whose payout clears $1,000 ends `awaiting_signoff` with no payment recorded
+- [x] `POST /api/claims/CLM-1002/run` returns immediately with the claim `in_progress`, and polling `GET /api/claims/CLM-1002/activity` shows steps arriving
+- [x] `npm run check:python` is clean
 
 ## Phase 4: the dashboard, the queue
 

@@ -142,6 +142,11 @@ def policy_wording() -> str:
     return (DATA / "policy_wording.md").read_text(encoding="utf-8")
 
 
+def instructions() -> str:
+    """Return the agent's instructions, which the handlers also read."""
+    return (ROOT / "agent" / "instructions.md").read_text(encoding="utf-8")
+
+
 def seed(conn: sqlite3.Connection) -> None:
     """Fill an empty database from the business data in data/."""
     conn.executemany(

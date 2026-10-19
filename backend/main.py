@@ -3,9 +3,10 @@
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
 
+from agent.main import work
 from backend import db, store
 from backend.models import (
     Claim,
@@ -91,6 +92,16 @@ def get_policy_wording() -> str:
     return db.policy_wording()
 
 
+@app.get(
+    "/api/instructions",
+    operation_id="get_instructions",
+    response_class=PlainTextResponse,
+)
+def get_instructions() -> str:
+    """Read the agent's instructions."""
+    return db.instructions()
+
+
 @app.get("/api/claims/{claim_id}/activity", operation_id="list_activity")
 def list_activity(claim_id: str) -> list[Step]:
     """List the steps taken on a claim, in the order they happened."""
@@ -131,3 +142,19 @@ def pay_claim(claim_id: str, body: PaymentRequest) -> Claim:
     """Pay an approved claim, unless it is still waiting for a sign-off."""
     claim_or_404(claim_id)
     return store.pay(claim_id, body.amount)
+
+
+@app.post("/api/claims/{claim_id}/start", operation_id="start_claim")
+def start_claim(claim_id: str) -> Claim:
+    """Hand a claim to the agent, clearing anything an earlier run left behind."""
+    claim_or_404(claim_id)
+    return store.start(claim_id)
+
+
+@app.post("/api/claims/{claim_id}/run", operation_id="run_agent")
+def run_agent(claim_id: str, tasks: BackgroundTasks) -> Claim:
+    """Set the agent working on a claim, and return before it finishes."""
+    claim_or_404(claim_id)
+    claim = store.start(claim_id)
+    tasks.add_task(work, claim_id, f"{claim_id}-{store.now()}")
+    return claim
